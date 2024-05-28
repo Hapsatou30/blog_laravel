@@ -23,7 +23,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ $article->nom }}</h5>
             <p class="card-text">{{ $article->description }}</p>
-            <p class="card-text">Date de création : {{ $article->date_creation }}</p>
+            <p class="card-text">Date de création : {{ $article->created_at }}</p>
             <p class="card-text">À la Une : {{ $article->la_une ? 'Oui' : 'Non' }}</p>
             <div class="liens">
                 <a href="/articles/modifier_articles/{{ $article->id }}" class="btn btn-info"><i class="fas fa-edit"></i> </a>

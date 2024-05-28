@@ -38,10 +38,6 @@
           <input type="text" class="form-control" id="image" name="image">
         </div>
         <div class="form-group">
-          <label for="date_creation">Date de création</label>
-          <input type="date" class="form-control" id="date_creation" name="date_creation">
-        </div>
-        <div class="form-group">
             <label>À la Une</label><br>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="la_une" id="la_une_oui" value="1">

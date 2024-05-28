@@ -18,7 +18,6 @@ class ArticleController extends Controller
         $request->validate([
             'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
             'description' => ['required'], 
-            'date_creation' => 'required',
             'la_une' => 'nullable|boolean',
             'image' => ['required', 'url'], 
         ], [
@@ -28,7 +27,6 @@ class ArticleController extends Controller
         $article = new Article();
         $article->nom = $request->nom;
         $article->description = $request->description;
-        $article->date_creation = $request->date_creation;
         $article->la_une = $request->la_une;
         $article->image = $request->image;
         $article->save();
@@ -56,7 +54,6 @@ class ArticleController extends Controller
         $request->validate([
             'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
             'description' => ['required'], 
-            'date_creation' => 'required',
             'la_une' => 'nullable|boolean',
             'image' => ['required', 'url'], 
         ], [
@@ -66,7 +63,6 @@ class ArticleController extends Controller
         $article = Article::find($request->id);
         $article->nom = $request->nom;
         $article->description = $request->description;
-        $article->date_creation = $request->date_creation;
         $article->la_une = $request->la_une;
         $article->image = $request->image;
         $article->update();
