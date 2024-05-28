@@ -27,7 +27,7 @@
             <p class="card-text">À la Une : {{ $article->la_une ? 'Oui' : 'Non' }}</p>
             <div class="liens">
                 <a href="/articles/modifier_articles/{{ $article->id }}" class="btn btn-info"><i class="fas fa-edit"></i> </a>
-            <a href="/articles/supprimer/{{ $article->id }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer {{ $article->nom }} ?')"><i class="fas fa-trash-alt"></i></a>
+                <a href="/articles/supprimer/{{ $article->id }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer {{ $article->nom }} ?')"><i class="fas fa-trash-alt"></i></a>
             </div>
         </div>
     </div>

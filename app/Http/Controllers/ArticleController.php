@@ -73,6 +73,6 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         $article->delete();
-        return view("/articles/modifier_articles", compact("article"));
+        return redirect('/articles/liste_articles')->with('status', 'L\'article a bien été supprimer avec succès.');
     }
 }
