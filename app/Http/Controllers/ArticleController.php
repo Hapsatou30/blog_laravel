@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function ajouter_articles()
+    public function ajouterArticles()
     {
         return view('/articles/ajouter_articles');
         
     }
-    public function traitement_ajout_articles(Request $request)
+    public function traitementAjoutArticles(Request $request)
     {
         $request->validate([
             'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
@@ -34,5 +34,10 @@ class ArticleController extends Controller
         $article->save();
         return redirect('/articles/ajouter_articles')->with('status', 'Une article a bien été ajouté avec succès.');
 
+    }
+    public function afficherArticle()
+    {
+        $articles = Article::all();
+        return view("/articles/liste_articles" , compact('articles'));
     }
 }
