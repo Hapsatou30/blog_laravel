@@ -45,4 +45,32 @@ class ArticleController extends Controller
         $article = Article::find($id);
         return view("/articles/details_articles" , compact('article'));
     }
+    public function modifierArticles($id)
+    {
+        $article = Article::find($id);
+        return view("/articles/modifier_articles", compact("article"));
+        
+    }
+    public function traitementModifier(Request $request)
+    {
+        $request->validate([
+            'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
+            'description' => ['required'], 
+            'date_creation' => 'required',
+            'la_une' => 'nullable|boolean',
+            'image' => ['required', 'url'], 
+        ], [
+            'nom.regex' => 'Le champ nom ne doit contenir que des lettres, espaces, tirets, apostrophes, virgules et points.',
+            'image.url' => 'Le champ image doit être une URL valide.',
+        ]);
+        $article = Article::find($request->id);
+        $article->nom = $request->nom;
+        $article->description = $request->description;
+        $article->date_creation = $request->date_creation;
+        $article->la_une = $request->la_une;
+        $article->image = $request->image;
+        $article->update();
+        return redirect('/articles/liste_articles')->with('status', 'Une article a bien été modifié avec succès.');
+
+    }
 }

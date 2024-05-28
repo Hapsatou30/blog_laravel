@@ -26,7 +26,7 @@
             <p class="card-text">Date de création : {{ $article->date_creation }}</p>
             <p class="card-text">À la Une : {{ $article->la_une ? 'Oui' : 'Non' }}</p>
             <div class="liens">
-                <a href="/update/{{ $article->id }}" class="btn btn-info"><i class="fas fa-edit"></i> </a>
+                <a href="/articles/modifier_articles/{{ $article->id }}" class="btn btn-info"><i class="fas fa-edit"></i> </a>
             <a href="/delete{{ $article->id }}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
             </div>
         </div>
