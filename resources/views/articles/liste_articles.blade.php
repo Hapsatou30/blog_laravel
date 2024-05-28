@@ -25,7 +25,7 @@
                        <div class="card-body">
                            <h5 class="card-title">{{ $article->nom }}</h5>
                            <div class="d-flex justify-content-between align-articles-center ">
-                                <a href="#" class="btn btn-primary"><i class="fas fa-info-circle"></i> </a>
+                                <a href="/articles/details_articles/{{$article->id}}" class="btn btn-primary"><i class="fas fa-info-circle"></i> </a>
                                 <a href="#" class="btn btn-primary"><i class="fas fa-comments"></i> </a>
                             </div>
                          </div>

@@ -9,3 +9,4 @@ Route::get('/', function () {
 Route::get("/articles/ajouter_articles", [ArticleController::class, "ajouterArticles"]);
 Route::post("/articles/ajouter_articles/traitement", [ArticleController::class, "traitementAjoutArticles"]);
 Route::get("/articles/liste_articles", [ArticleController::class, "afficherArticle"]);
+Route::get("/articles/details_articles/{id}", [ArticleController::class, "voirDetails"]);

@@ -32,12 +32,17 @@ class ArticleController extends Controller
         $article->la_une = $request->la_une;
         $article->image = $request->image;
         $article->save();
-        return redirect('/articles/ajouter_articles')->with('status', 'Une article a bien été ajouté avec succès.');
+        return redirect('/articles/liste_articles')->with('status', 'Une article a bien été ajouté avec succès.');
 
     }
     public function afficherArticle()
     {
         $articles = Article::all();
         return view("/articles/liste_articles" , compact('articles'));
+    }
+    public function voirDetails($id)
+    {
+        $article = Article::find($id);
+        return view("/articles/details_articles" , compact('article'));
     }
 }
