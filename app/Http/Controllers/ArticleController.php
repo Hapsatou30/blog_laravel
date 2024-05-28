@@ -43,6 +43,7 @@ class ArticleController extends Controller
         $article = Article::find($id);
         return view("/articles/details_articles" , compact('article'));
     }
+   
     public function modifierArticles($id)
     {
         $article = Article::find($id);
