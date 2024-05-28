@@ -12,3 +12,4 @@ Route::get("/articles/liste_articles", [ArticleController::class, "afficherArtic
 Route::get("/articles/details_articles/{id}", [ArticleController::class, "voirDetails"]);
 Route::get("/articles/modifier_articles/{id}", [ArticleController::class, "modifierArticles"]);
 Route::post("/articles/modifier_articles/traitement", [ArticleController::class, "traitementModifier"]);
+Route::get("/articles/supprimer/{id}", [ArticleController::class, "supprimerArticles"]);
