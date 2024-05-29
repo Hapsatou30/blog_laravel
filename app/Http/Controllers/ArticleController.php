@@ -24,12 +24,13 @@ class ArticleController extends Controller
             'nom.regex' => 'Le champ nom ne doit contenir que des lettres, espaces, tirets, apostrophes, virgules et points.',
             'image.url' => 'Le champ image doit être une URL valide.',
         ]);
-        $article = new Article();
-        $article->nom = $request->nom;
-        $article->description = $request->description;
-        $article->la_une = $request->la_une;
-        $article->image = $request->image;
-        $article->save();
+        // $article = new Article();
+        // $article->nom = $request->nom;
+        // $article->description = $request->description;
+        // $article->la_une = $request->la_une;
+        // $article->image = $request->image;
+        // $article->save();
+        Article::create($request->all());
         return redirect('/articles/liste_articles')->with('status', 'Une article a bien été ajouté avec succès.');
 
     }
