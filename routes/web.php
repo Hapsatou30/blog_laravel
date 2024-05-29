@@ -23,4 +23,6 @@ Route::get("/articles/supprimer/{id}", [ArticleController::class, "supprimerArti
 Route::get('/commentaires/liste_commentaires/{article}', [CommentaireController::class, 'afficherCommentaires']);
 Route::get("/commentaires/ajouter_commentaires/{article}", [CommentaireController::class, "ajouterCommentaires"]);
 Route::post("/commentaires/ajouter_commentaires/traitement/{article}", [CommentaireController::class, "traitementAjoutCommentaires"]);
+Route::get("/commentaires/modifier_commentaires/{article}", [CommentaireController::class, "modifierCommentaires"]);
+Route::post("/commentaires/modifier_commentaires/traitement/{article}", [CommentaireController::class, "traitementModifier"]);
 Route::get("/commentaires/supprimer/{article}", [CommentaireController::class, "supprimerCommentaires"]);

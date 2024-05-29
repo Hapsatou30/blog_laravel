@@ -49,8 +49,8 @@
                             <td>{{ $commentaire->contenu }}</td>
                             <td>{{ $commentaire->created_at }}</td>
                             <td>
-                                <a href="#" class="btn btn-info"><i class="fas fa-edit"></i> </a>
-                                <a href="/commentaires/supprimer/{{$commentaire->id}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?')"><i class="fas fa-trash-alt"></i></a>
+                                <a href="/commentaires/modifier_commentaires/{{$commentaire->id}}" class="btn btn-info" style="margin-right:10px; "><i class="fas fa-edit"></i> </a>
+                                <a href="/commentaires/supprimer/{{$commentaire->id}}" class="btn btn-danger" style="margin-left: 10px;" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?')"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     @endforeach

@@ -16,26 +16,7 @@ class CommentaireController extends Controller
         // Passer l'article avec ses commentaires à la vue
         return view('commentaires.liste_commentaires', compact('article'));
     }
-    
-    // public function ajouterCommentaires($articleId)
-    // {
-    //     $article = Article::findOrFail($articleId);
-    //     return view('commentaires.ajouter_commentaires', compact('article'));
-    // }
 
-    // public function traitementAjoutCommentaires(Request $request)
-    // {
-    //     $request->validate([
-    //         'auteur' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
-    //         'contenu' => ['required'], 
-    //     ]);
-    //     $commentaire = new Commentaire();
-    //     $commentaire->auteur = $request->auteur;
-    //     $commentaire->contenu = $request->contenu;
-    //     $commentaire->save();
-    //     return redirect('/commentaires/liste_commentaires')->with('status', 'Un commentaire a bien été ajouté avec succès.');
-
-    // }
 
     public function ajouterCommentaires($articleId)
     {
@@ -59,6 +40,27 @@ class CommentaireController extends Controller
         $commentaire->save();
     
         return redirect('/commentaires/liste_commentaires/' . $articleId)->with('status', 'Un commentaire a bien été ajouté avec succès.');
+    }
+
+    public function modifierCommentaires($id)
+    {
+        $commentaire = Commentaire::find($id);
+        return view('commentaires.modifier_commentaires', compact('commentaire'));
+    }
+
+    public function traitementModifier(Request $request, $id)
+    {
+        $request->validate([
+            'auteur' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
+            'contenu' => ['required'], 
+        ]);
+    
+        $commentaire = Commentaire::findOrFail($id);
+        $commentaire->auteur = $request->auteur;
+        $commentaire->contenu = $request->contenu;
+        $commentaire->save();
+    
+        return redirect('/commentaires/liste_commentaires/' . $commentaire->article_id)->with('status', 'Le commentaire a été modifié avec succès.');
     }
     
     public function supprimerCommentaires($id)
