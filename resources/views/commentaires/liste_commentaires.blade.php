@@ -50,7 +50,7 @@
                             <td>{{ $commentaire->created_at }}</td>
                             <td>
                                 <a href="#" class="btn btn-info"><i class="fas fa-edit"></i> </a>
-                                <a href="#" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer {{ $article->nom }} ?')"><i class="fas fa-trash-alt"></i></a>
+                                <a href="/commentaires/supprimer/{{$commentaire->id}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?')"><i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     @endforeach

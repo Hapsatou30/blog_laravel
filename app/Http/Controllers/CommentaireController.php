@@ -49,16 +49,25 @@ class CommentaireController extends Controller
             'auteur' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
             'contenu' => ['required'], 
         ]);
-
+    
         $article = Article::find($articleId);
-
+    
         $commentaire = new Commentaire();
         $commentaire->auteur = $request->auteur;
         $commentaire->contenu = $request->contenu;
         $commentaire->article_id = $articleId; // Assurez-vous que l'article_id est correctement assigné
         $commentaire->save();
-
-        return redirect()->route('articles.commentaires', $articleId)->with('status', 'Un commentaire a bien été ajouté avec succès.');
+    
+        return redirect('/commentaires/liste_commentaires/' . $articleId)->with('status', 'Un commentaire a bien été ajouté avec succès.');
     }
+    
+    public function supprimerCommentaires($id)
+    {
+        $commentaire = Commentaire::find($id);
+        $articleId = $commentaire->article_id; // Récupérer l'ID de l'article associé au commentaire
+        $commentaire->delete();
+        return redirect('/commentaires/liste_commentaires/' . $articleId)->with('status', 'Le commentaire a été supprimé avec succès.');
+    }
+
 }
 

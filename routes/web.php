@@ -20,6 +20,7 @@ Route::get("/articles/supprimer/{id}", [ArticleController::class, "supprimerArti
 
 
 //les routes pour les commentaires
-Route::get('/commentaires/liste_commentaires/{article}', [CommentaireController::class, 'afficherCommentaires'])->name('articles.commentaires');
+Route::get('/commentaires/liste_commentaires/{article}', [CommentaireController::class, 'afficherCommentaires']);
 Route::get("/commentaires/ajouter_commentaires/{article}", [CommentaireController::class, "ajouterCommentaires"]);
 Route::post("/commentaires/ajouter_commentaires/traitement/{article}", [CommentaireController::class, "traitementAjoutCommentaires"]);
+Route::get("/commentaires/supprimer/{article}", [CommentaireController::class, "supprimerCommentaires"]);
