@@ -16,7 +16,7 @@ class ArticleController extends Controller
     public function traitementAjoutArticles(Request $request)
     {
         $request->validate([
-            'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
+            'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.\é\è\ê]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
             'description' => ['required'], 
             'la_une' => 'nullable|boolean',
             'image' => ['required', 'url'], 
@@ -34,11 +34,21 @@ class ArticleController extends Controller
         return redirect('/articles/liste_articles')->with('status', 'Une article a bien été ajouté avec succès.');
 
     }
+    // public function afficherArticle()
+    // {
+    //     $articles = Article::all();
+    //     return view("/articles/liste_articles" , compact('articles'));
+    // }
+
     public function afficherArticle()
     {
-        $articles = Article::all();
-        return view("/articles/liste_articles" , compact('articles'));
+        // Récupérer les articles en vedette et les articles tendances
+        $articlesLaUne = Article::where('la_une', true)->take(3)->get();
+        $articlesNonLaUne = Article::where('la_une', false)->take(4)->get();
+
+        return view('/articles/liste_articles', compact('articlesLaUne', 'articlesNonLaUne'));
     }
+
     public function voirDetails($id)
     {
         $article = Article::find($id);
@@ -54,7 +64,7 @@ class ArticleController extends Controller
     public function traitementModifier(Request $request)
     {
         $request->validate([
-            'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
+            'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.\é\è\ê]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
             'description' => ['required'], 
             'la_une' => 'nullable|boolean',
             'image' => ['required', 'url'], 

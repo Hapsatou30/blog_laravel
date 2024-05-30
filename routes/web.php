@@ -20,9 +20,8 @@ Route::get("/articles/supprimer/{id}", [ArticleController::class, "supprimerArti
 
 
 //les routes pour les commentaires
-Route::get('/commentaires/liste_commentaires/{article}', [CommentaireController::class, 'afficherCommentaires']);
-Route::get("/commentaires/ajouter_commentaires/{article}", [CommentaireController::class, "ajouterCommentaires"]);
-Route::post("/commentaires/ajouter_commentaires/traitement/{article}", [CommentaireController::class, "traitementAjoutCommentaires"]);
-Route::get("/commentaires/modifier_commentaires/{article}", [CommentaireController::class, "modifierCommentaires"]);
+Route::get('/articles/details_articles/{article}', [CommentaireController::class, 'afficherCommentaires']);
+Route::post('/articles/{articles}/details_articles/commentaires/traitement',[CommentaireController::class, "traitementAjoutCommentaires"]);
+Route::get("/commentaires/modifier_commentaires/{commentaire}", [CommentaireController::class, "modifierCommentaires"]);
 Route::post("/commentaires/modifier_commentaires/traitement/{article}", [CommentaireController::class, "traitementModifier"]);
-Route::get("/commentaires/supprimer/{article}", [CommentaireController::class, "supprimerCommentaires"]);
+Route::get("/commentaires/supprimer/{commentaires}", [CommentaireController::class, "supprimerCommentaires"]);
