@@ -11,15 +11,14 @@ class ArticleController extends Controller
     public function ajouterArticles()
     {
         return view('/articles/ajouter_articles');
-        
     }
     public function traitementAjoutArticles(Request $request)
     {
         $request->validate([
             'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.\é\è\ê]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
-            'description' => ['required'], 
+            'description' => ['required'],
             'la_une' => 'nullable|boolean',
-            'image' => ['required', 'url'], 
+            'image' => ['required', 'url'],
         ], [
             'nom.regex' => 'Le champ nom ne doit contenir que des lettres, espaces, tirets, apostrophes, virgules et points.',
             'image.url' => 'Le champ image doit être une URL valide.',
@@ -32,7 +31,6 @@ class ArticleController extends Controller
         // $article->save();
         Article::create($request->all());
         return redirect('/articles/liste_articles')->with('status', 'Une article a bien été ajouté avec succès.');
-
     }
     // public function afficherArticle()
     // {
@@ -43,8 +41,8 @@ class ArticleController extends Controller
     public function afficherArticle()
     {
         // Récupérer les articles en vedette et les articles tendances
-        $articlesLaUne = Article::where('la_une', true)->take(3)->get();
-        $articlesNonLaUne = Article::where('la_une', false)->take(4)->get();
+        $articlesLaUne = Article::where('la_une', true)->take(9)->get();
+        $articlesNonLaUne = Article::where('la_une', false)->take(9)->get();
 
         return view('/articles/liste_articles', compact('articlesLaUne', 'articlesNonLaUne'));
     }
@@ -52,22 +50,21 @@ class ArticleController extends Controller
     public function voirDetails($id)
     {
         $article = Article::find($id);
-        return view("/articles/details_articles" , compact('article'));
+        return view("/articles/details_articles", compact('article'));
     }
-   
+
     public function modifierArticles($id)
     {
         $article = Article::find($id);
         return view("/articles/modifier_articles", compact("article"));
-        
     }
     public function traitementModifier(Request $request)
     {
         $request->validate([
             'nom' => ['required', 'regex:/^[a-zA-Z\s\-\'\,\.\é\è\ê]+$/'], // Permet les lettres, espaces, tirets, apostrophes, virgules et points
-            'description' => ['required'], 
+            'description' => ['required'],
             'la_une' => 'nullable|boolean',
-            'image' => ['required', 'url'], 
+            'image' => ['required', 'url'],
         ], [
             'nom.regex' => 'Le champ nom ne doit contenir que des lettres, espaces, tirets, apostrophes, virgules et points.',
             'image.url' => 'Le champ image doit être une URL valide.',
@@ -79,7 +76,6 @@ class ArticleController extends Controller
         $article->image = $request->image;
         $article->update();
         return redirect('/articles/liste_articles')->with('status', 'Une article a bien été modifié avec succès.');
-
     }
     public function supprimerArticles($id)
     {

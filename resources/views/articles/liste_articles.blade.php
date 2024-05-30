@@ -28,8 +28,8 @@ Author URL: http://w3layouts.com
         <nav class="navbar navbar-expand-lg navbar-light fill px-lg-0 py-0 px-3">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <span class="fa fa-pencil-square-o"></span>  Blog</a>
-               
+                    <span class="fa fa-pencil-square-o"></span> Blog</a>
+
                 <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -70,7 +70,8 @@ Author URL: http://w3layouts.com
                     <!-- author -->
                     <div class="header-author d-flex ml-lg-4 pl-2 mt-lg-0 mt-3">
                         <a class="img-circle img-circle-sm" href="#author">
-                            <img src="https://i.pinimg.com/564x/79/42/1e/79421edd6375c1a47f98eaceff674e7f.jpg" class="img-fluid" alt="Profil">
+                            <img src="https://i.pinimg.com/564x/79/42/1e/79421edd6375c1a47f98eaceff674e7f.jpg"
+                                class="img-fluid" alt="Profil">
                         </a>
                         <div class="align-self ml-3">
                             <a href="#author">
@@ -102,56 +103,72 @@ Author URL: http://w3layouts.com
         <!--//nav-->
     </header>
     <!-- //header -->
-   
-   <div class="container">
-       <h1>Les articles à la Une</h1>
-       <div class="row">
-        @foreach ($articlesLaUne as $key => $article)
-            @if($key % 3 == 0)
-                </div><div class="row">
+
+    <div class="container">
+        <h1>Les articles à la Une</h1>
+        <div class="row">
+            @foreach ($articlesLaUne as $key => $article)
+                @if ($key % 3 == 0)
+        </div>
+        <div class="row mb-3">
             @endif
             <div class="col-lg-4 col-md-6 item">
                 <div class="card">
                     <div class="card-header p-0 position-relative">
                         <a href="/articles/details_articles/{{ $article->id }}">
-                            <img class="card-img-bottom d-block radius-image" src="{{ $article->image }}" alt="{{ $article->nom }}">
+                            <img class="card-img-bottom d-block radius-image" src="{{ $article->image }}"
+                                alt="{{ $article->nom }}">
                         </a>
                     </div>
                     <div class="card-body p-0 blog-details">
-                        <a href="/articles/details_articles/{{ $article->id }}" class="blog-desc">{{ $article->nom }}</a>
+                        <a href="/articles/details_articles/{{ $article->id }}"
+                            class="blog-desc">{{ $article->nom }}</a>
                         <p style="color: black">{{ Str::limit($article->description, 150) }}</p>
-                      
+
                         <ul class="blog-meta">
                             <li class="meta-item blog-lesson">
                                 <span class="meta-value">{{ $article->created_at->format('F d, Y') }}</span>
                             </li>
                         </ul>
+                        <div class="action">
+                            <a href="/articles/modifier_articles/{{ $article->id }}" class="btn btn-info"
+                                style="margin-right:10px; "><i class="fas fa-edit"></i> </a>
+                            <a href="/articles/supprimer/{{ $article->id }}" class="btn btn-danger"
+                                style="margin-left: 10px;"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?')"><i
+                                    class="fas fa-trash-alt"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        @endforeach
-    </div>    
-    
-       <!-- Articles tendances -->
-       <h2>Les Anciens Articles</h2>
-       <div class="grids5-info ">
-        @foreach ($articlesNonLaUne as $key => $article)
+            @endforeach
+        </div>
+
+        <!-- Articles tendances -->
+        <h2>Les Anciens Articles</h2>
+           <div class="grids5-info">
+    @foreach ($articlesNonLaUne as $key => $article)
+        <div class="article-card mb-5">
             <h4>{{ str_pad($key + 1, 2, '0', STR_PAD_LEFT) }}.</h4>
             <div class="blog-info">
-                <a href="/articles/details_articles/{{$article->id}}" class="blog-desc1">{{ $article->nom }}</a>
+                <a href="/articles/details_articles/{{ $article->id }}" class="blog-desc1">{{ $article->nom }}</a>
                 <div class="author align-items-center mt-2 mb-1">
-                    <p >{{ Str::limit($article->description, 150) }}</p>
-                <ul class="blog-meta">
-                    <li class="meta-item blog-lesson">
-                        <span class="meta-value">{{ $article->created_at->format('F d, Y') }}</span>
-                    </li>
-                   
-                </ul>
+                    <p>{{ Str::limit($article->description, 150) }}</p>
+                    <ul class="blog-meta">
+                        <li class="meta-item blog-lesson">
+                            <span class="meta-value">{{ $article->created_at->format('F d, Y') }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="action">
+                    <a href="/articles/modifier_articles/{{ $article->id }}" class="btn btn-info" style="margin-right:10px;"><i class="fas fa-edit"></i></a>
+                    <a href="/articles/supprimer/{{ $article->id }}" class="btn btn-danger" style="margin-left: 10px;" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ?')"><i class="fas fa-trash-alt"></i></a>
+                </div>
             </div>
-        @endforeach
-    </div>
-    
-   </div>
+        </div>
+    @endforeach
+</div>
+
 
     <!-- footer -->
     <footer class="w3l-footer-16">
@@ -159,17 +176,24 @@ Author URL: http://w3layouts.com
             <div class="container">
                 <div class="copy-right">
                     <h6>© 2024 Blog . Made with <span class="fa fa-heart" aria-hidden="true"></span>, Designed by
-                        <a href="https://w3layouts.com">Hapsatou</a> </h6>
+                        <a href="https://w3layouts.com">Hapsatou</a>
+                    </h6>
                 </div>
                 <ul class="author-icons mt-4">
-                    <li><a class="facebook" href="#url"><span class="fa fa-facebook" aria-hidden="true"></span></a>
+                    <li><a class="facebook" href="#url"><span class="fa fa-facebook"
+                                aria-hidden="true"></span></a>
                     </li>
-                    <li><a class="twitter" href="#url"><span class="fa fa-twitter" aria-hidden="true"></span></a></li>
-                    <li><a class="google" href="#url"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                    <li><a class="twitter" href="#url"><span class="fa fa-twitter" aria-hidden="true"></span></a>
                     </li>
-                    <li><a class="linkedin" href="#url"><span class="fa fa-linkedin" aria-hidden="true"></span></a></li>
-                    <li><a class="github" href="#url"><span class="fa fa-github" aria-hidden="true"></span></a></li>
-                    <li><a class="dribbble" href="#url"><span class="fa fa-dribbble" aria-hidden="true"></span></a></li>
+                    <li><a class="google" href="#url"><span class="fa fa-google-plus"
+                                aria-hidden="true"></span></a>
+                    </li>
+                    <li><a class="linkedin" href="#url"><span class="fa fa-linkedin"
+                                aria-hidden="true"></span></a></li>
+                    <li><a class="github" href="#url"><span class="fa fa-github" aria-hidden="true"></span></a>
+                    </li>
+                    <li><a class="dribbble" href="#url"><span class="fa fa-dribbble"
+                                aria-hidden="true"></span></a></li>
                 </ul>
                 <button onclick="topFunction()" id="movetop" title="Go to top">
                     <span class="fa fa-angle-up"></span>
@@ -180,7 +204,7 @@ Author URL: http://w3layouts.com
         <!-- move top -->
         <script>
             // When the user scrolls down 20px from the top of the document, show the button
-            window.onscroll = function () {
+            window.onscroll = function() {
                 scrollFunction()
             };
 
@@ -209,8 +233,8 @@ Author URL: http://w3layouts.com
 
     <!-- disable body scroll which navbar is in active -->
     <script>
-        $(function () {
-            $('.navbar-toggler').click(function () {
+        $(function() {
+            $('.navbar-toggler').click(function() {
                 $('body').toggleClass('noscroll');
             })
         });
