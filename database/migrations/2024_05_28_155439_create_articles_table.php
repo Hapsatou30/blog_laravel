@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nom');
             $table->text('description');
             $table->boolean('la_une')->default(false);
-            $table->text('image')->default('https://place-hold.it/300x500');
+            $table->text('image');
             $table->timestamps();
         });
     }
